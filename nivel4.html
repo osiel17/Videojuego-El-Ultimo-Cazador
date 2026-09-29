@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nivel 4 - El Último Cazador</title>
+
+    <link rel="stylesheet" href="style/nivel4.css">
+</head>
+
+<body>
+
+<center>
+
+    <!------- PANEL GAMEOVER -------->
+    <div class="panel-final panel-gameover" id="mostrar-gameover">
+
+        <div class="caja-final caja-derrota">
+
+            <div class="simbolo-final simbolo-derrota">
+                ☠
+            </div>
+
+            <h1>HAS CAÍDO</h1>
+
+            <p>
+                Las criaturas de la cueva acabaron con tu ascenso.
+            </p>
+
+            <p class="texto-secundario-final">
+                Las sombras bajo la montaña no perdonan. Vuelve a intentarlo y encuentra la salida antes de quedar atrapado para siempre.
+            </p>
+
+            <div class="botones-final">
+
+                <button class="boton-final boton-reintentar" id="restart-js">
+                    Reintentar
+                </button>
+
+                <button class="boton-final boton-menu" id="menu-js">
+                    Volver al Menú
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--------- PANEL VICTORIA ----------->
+    <div class="panel-final panel-victoria" id="panel-victoriajs">
+
+        <div class="caja-final caja-victoria">
+
+            <div class="simbolo-final simbolo-victoria">
+                ✦
+            </div>
+
+            <h1>CUEVA SUPERADA</h1>
+
+            <p>
+                El cazador logró escapar de las profundidades de la montaña.
+            </p>
+
+            <p class="texto-secundario-final">
+                Entre cristales y sombras, el camino hacia el Castillo Oscuro se ha abierto.
+            </p>
+
+            <div class="botones-final">
+
+                <button class="boton-final boton-siguiente" id="nextlevel-js">
+                    Siguiente Nivel
+                </button>
+
+                <button class="boton-final boton-menu" id="menu-victoria">
+                    Volver al Menú
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!------- PANEL OBJETIVO ------->
+    <div class="panel-objetivo" id="panel-objetivo">
+
+        <div class="caja-panel-inicio">
+
+            <div class="icono-panel">
+                ✦
+            </div>
+
+            <h1>Objetivo del Nivel 4</h1>
+
+            <p class="descripcion-panel">
+                El cazador ha entrado a las Cuevas Oscuras, un lugar oculto bajo la montaña donde habitan criaturas de las sombras.
+            </p>
+
+            <div class="contenido-objetivo">
+
+                <p>
+                    ELIMINA a todas las Criaturas, avanza por las cuevas y encuentra el portal que conduce al Castillo Oscuro.
+                </p>
+
+                <p>
+                    Ten cuidado con:
+                </p>
+
+                <ul>
+                    <li>💀 Mini fantasmas veloces</li>
+                    <li>🕷️ Arañas de cueva</li>
+                    <li>🐍 Serpientes</li>
+                </ul>
+
+                <p>
+                    Llega al portal antes de que las criaturas de la cueva te rodeen.
+                </p>
+
+            </div>
+
+            <button id="comenzar-juego">
+                Comenzar Juego
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!------- PANEL MEJORAS ------->
+    <div class="panel-mejoras" id="panel-mejoras">
+
+        <div class="caja-mejoras">
+
+            <div class="icono-panel">
+                ⚔️
+            </div>
+
+            <h1>Mejoras del Cazador</h1>
+
+            <p class="texto-mejoras">
+                Estas son las mejoras obtenidas durante el ascenso.
+            </p>
+
+            <div class="lista-mejoras">
+
+                <div class="mejora-card" id="mejora-dano">
+                    <div class="icono-mejora">⚔️</div>
+                    <h2>Daño Mejorado</h2>
+                    <p>
+                        La espada causa más daño a las criaturas.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-rango">
+                    <div class="icono-mejora">✨</div>
+                    <h2>Mayor Alcance</h2>
+                    <p>
+                        El ataque con espada alcanza una mayor distancia.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-cooldown">
+                    <div class="icono-mejora">🔥</div>
+                    <h2>Ataque Rápido</h2>
+                    <p>
+                        El cazador puede atacar con mayor frecuencia.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-velocidad">
+                    <div class="icono-mejora">💨</div>
+                    <h2>Movimiento Ágil</h2>
+                    <p>
+                        La velocidad de movimiento del cazador aumenta.
+                    </p>
+                </div>
+
+            </div>
+
+            <button id="continuar-mejoras" class="boton-continuar-mejoras">
+                Continuar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!------- IMAGEN EN LA BARRA DE SALUD -------->
+    <div class="contenedor-imagen">
+        <img 
+            src="img/personaje/perfil-asesino.png" 
+            class="perfil-asesino"
+            alt="Perfil del cazador"
+        >
+    </div>
+
+
+    <!------- CONTENEDOR DE LA BARRA DE SALUD -------->
+    <div class="contenedor-vida">
+        <div class="barra-vida" id="vida-js"></div>
+    </div>
+
+
+    <!------- CANVAS PRINCIPAL ------->
+    <canvas 
+        id="panel"
+        width="1750"
+        height="1050"
+        class="canvas-juego">
+    </canvas>
+
+</center>
+
+
+<!-- ===================================================== -->
+<!-- ================= SCRIPTS DEL JUEGO ================= -->
+<!-- ===================================================== -->
+
+<!-- CLASES DE CRIATURAS -->
+<script src="js/fantasma.js"></script>
+<script src="js/cruz.js"></script>
+<script src="js/cactus.js"></script>
+<script src="js/piedra.js"></script>
+<script src="js/minifantasma.js"></script>
+<script src="js/araña.js"></script>
+<script src="js/serpiente.js"></script>
+
+<!-- ARCHIVOS DEL NIVEL 4 -->
+<script src="js/nivel4/configNivel4.js"></script>
+<script src="js/nivel4/assetsNivel4.js"></script>
+<script src="js/nivel4/jugador4.js"></script>
+<script src="js/nivel4/ataque4.js"></script>
+<script src="js/nivel4/colisiones.js"></script>
+<script src="js/nivel4/camara.js"></script>
+<script src="js/nivel4/enemigosNivel4.js"></script>
+<script src="js/nivel4/interfaz4.js"></script>
+<script src="js/nivel4/controles.js"></script>
+<script src="js/nivel4/mainNivel4.js"></script>
+
+</body>
+</html>

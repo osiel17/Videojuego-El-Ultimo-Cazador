@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nivel 5 - El Último Cazador</title>
+
+    <link rel="stylesheet" href="style/nivel5.css">
+</head>
+
+<body>
+
+<center>
+
+    <!------- PANEL GAMEOVER -------->
+    <div class="panel-final panel-gameover" id="mostrar-gameover">
+
+        <div class="caja-final caja-derrota">
+
+            <div class="simbolo-final simbolo-derrota">
+                ☠
+            </div>
+
+            <h1>HAS CAÍDO</h1>
+
+            <p>
+               Las sombras del Castillo Oscuro detuvieron tu camino.
+            </p>
+
+            <p class="texto-secundario-final">
+                  El poder del trono sigue esperando. Vuelve a intentarlo y reclama la mejora antes de que la maldición despierte por completo.
+            </p>
+
+            <div class="botones-final">
+
+                <button class="boton-final boton-reintentar" id="restart-js">
+                    Reintentar
+                </button>
+
+                <button class="boton-final boton-menu" id="menu-js">
+                    Volver al Menú
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--------- PANEL VICTORIA ----------->
+    <div class="panel-final panel-victoria" id="panel-victoriajs">
+
+        <div class="caja-final caja-victoria">
+
+            <div class="simbolo-final simbolo-victoria">
+                ✦
+            </div>
+
+            <h1>PODER DORADO OBTENIDO</h1>
+
+            <p>
+                 El cazador reclamó la bendición del Trono Dorado.
+            </p>
+
+            <p class="texto-secundario-final">
+                 Su fuerza ha aumentado y el camino hacia la Cima Maldita se ha abierto. El jefe final aguarda.
+            </p>
+
+            <div class="botones-final">
+
+                <button class="boton-final boton-siguiente" id="nextlevel-js">
+                    Siguiente Nivel
+                </button>
+
+                <button class="boton-final boton-menu" id="menu-victoria">
+                    Volver al Menú
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!------- PANEL OBJETIVO ------->
+    <div class="panel-objetivo" id="panel-objetivo">
+
+        <div class="caja-panel-inicio">
+
+            <div class="icono-panel">
+                ✦
+            </div>
+
+            <h1>Objetivo del Nivel 5</h1>
+
+            <p class="descripcion-panel">
+                   El cazador ha llegado al Castillo Oscuro, una fortaleza tomada por la maldición.
+            </p>
+
+            <div class="contenido-objetivo">
+
+                <p>
+                     LLEGA hasta el Trono Dorado, ELIMINA a todos los enemigos y corre hasta el Portal con la nueva Version del Cazador 
+                </p>
+
+                <p>
+                    Ten cuidado con:
+                </p>
+
+                <ul>
+                    <li>💀 Mini fantasmas veloces</li>
+                    <li>👻 Fantasmas</li>
+                    <li>🌵 Cactus</li>
+                    <li>🕷️  Arañas</li>
+                </ul>
+
+                <p>
+                    En ese lugar se encuentra una antigua mejora capaz de fortalecer al cazador antes del enfrentamiento final.
+                </p>
+
+            </div>
+
+            <button id="comenzar-juego">
+                Comenzar Juego
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!------- PANEL MEJORAS ------->
+    <div class="panel-mejoras" id="panel-mejoras">
+
+        <div class="caja-mejoras">
+
+            <div class="icono-panel">
+                ⚔️
+            </div>
+
+            <h1>Mejoras del Cazador</h1>
+
+            <p class="texto-mejoras">
+                Estas son las mejoras que obtendras al tener la nueva version del Cazador.
+            </p>
+
+            <div class="lista-mejoras">
+
+                <div class="mejora-card" id="mejora-dano">
+                    <div class="icono-mejora">⚔️</div>
+                    <h2>Daño Mejorado</h2>
+                    <p>
+                        La espada causa mucho más daño a las criaturas.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-rango">
+                    <div class="icono-mejora">✨</div>
+                    <h2>Mayor Salud</h2>
+                    <p>
+                        Tu salud sera de 500
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-cooldown">
+                    <div class="icono-mejora">🔥</div>
+                    <h2>Ataque Rápido</h2>
+                    <p>
+                        El cazador puede atacar con mayor frecuencia.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-velocidad">
+                    <div class="icono-mejora">💨</div>
+                    <h2>Movimiento Ágil</h2>
+                    <p>
+                        La velocidad de movimiento del cazador aumenta.
+                    </p>
+                </div>
+
+            </div>
+
+            <button id="continuar-mejoras" class="boton-continuar-mejoras">
+                Continuar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!------- IMAGEN EN LA BARRA DE SALUD -------->
+    <div class="contenedor-imagen">
+        <img 
+            src="img/personaje/perfil-asesino.png" 
+            class="perfil-asesino"
+            alt="Perfil del cazador"
+        >
+    </div>
+
+
+    <!------- CONTENEDOR DE LA BARRA DE SALUD -------->
+   <div class="contenedor-vida">
+        <div class="barra-vida" id="vida-js"></div>
+        <span class="texto-vida" id="texto-vida-js">100 / 100</span>
+   </div>
+
+
+    <!------- CANVAS PRINCIPAL ------->
+    <canvas 
+        id="panel"
+        width="1750"
+        height="1050"
+        class="canvas-juego">
+    </canvas>
+
+</center>
+
+
+<!-- ===================================================== -->
+<!-- ================= SCRIPTS DEL JUEGO ================= -->
+<!-- ===================================================== -->
+
+<!-- CLASES DE CRIATURAS -->
+<script src="js/fantasma.js"></script>
+<script src="js/cruz.js"></script>
+<script src="js/cactus.js"></script>
+<script src="js/piedra.js"></script>
+<script src="js/minifantasma.js"></script>
+<script src="js/araña.js"></script>
+<script src="js/serpiente.js"></script>
+
+<!-- ARCHIVOS DEL NIVEL 4 -->
+<script src="js/nivel5/configNivel5.js"></script>
+<script src="js/nivel5/assetsNivel5.js"></script>
+<script src="js/nivel5/jugador5.js"></script>
+<script src="js/nivel5/ataque5.js"></script>
+<script src="js/nivel5/colisiones.js"></script>
+<script src="js/nivel5/camara.js"></script>
+<script src="js/nivel5/enemigosNivel5.js"></script>
+<script src="js/nivel5/interfaz5.js"></script>
+<script src="js/nivel5/controles.js"></script>
+<script src="js/nivel5/mainNivel5.js"></script>
+
+</body>
+</html>

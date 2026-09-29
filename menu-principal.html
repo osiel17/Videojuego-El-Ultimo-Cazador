@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>El Último Cazador - Menú Principal</title>
+
+    <link rel="stylesheet" href="style/menu-principal.css">
+</head>
+
+<body>
+
+    <div class="contenedor-principal">
+
+        <!-- CAPA OSCURA -->
+        <div class="capa-oscura"></div>
+
+        <!-- NIEBLA -->
+        <div class="niebla-menu niebla-menu1"></div>
+        <div class="niebla-menu niebla-menu2"></div>
+
+        <!-- TÍTULO DEL JUEGO -->
+        <div class="titulo-menu">
+            <h1>EL ÚLTIMO CAZADOR</h1>
+            <p>Selecciona tu camino hacia la cima</p>
+        </div>
+
+        <!-- CONTENEDOR DE NIVELES -->
+        <div class="contenedor-niveles">
+
+            <!-- NIVEL 1 -->
+            <div class="tarjeta-nivel" id="card-level-1">
+
+                <h2>NIVEL 1</h2>
+
+                <p class="nombre-nivel">
+                    Bosque Marchito
+                </p>
+
+                <div class="contenedor-img-nivel">
+                    <img 
+                        src="img/escenarios/escenario1.png" 
+                        class="imagen-nivel"
+                        alt="Bosque Marchito"
+                    >
+                </div>
+
+                <button class="boton-nivel" id="button-l1">
+                    JUGAR
+                </button>
+
+            </div>
+
+            <!-- NIVEL 2 -->
+            <div class="tarjeta-nivel bloqueado" id="card-level-2">
+
+                <div class="candado">🔒</div>
+
+                <h2>NIVEL 2</h2>
+
+                <p class="nombre-nivel">
+                    Senderos Rocosos
+                </p>
+
+                <div class="contenedor-img-nivel">
+                    <img 
+                        src="img/escenarios/escenario2.png" 
+                        class="imagen-nivel"
+                        alt="Senderos Rocosos"
+                    >
+                </div>
+
+                <button class="boton-nivel" id="button-l2">
+                    BLOQUEADO
+                </button>
+
+            </div>
+
+            <!-- NIVEL 3 -->
+            <div class="tarjeta-nivel bloqueado" id="card-level-3">
+
+                <div class="candado">🔒</div>
+
+                <h2>NIVEL 3</h2>
+
+                <p class="nombre-nivel">
+                    Desierto Maldito
+                </p>
+
+                <div class="contenedor-img-nivel">
+                    <img 
+                        src="img/escenarios/escenario3.png" 
+                        class="imagen-nivel"
+                        alt="Desierto Maldito"
+                    >
+                </div>
+
+                <button class="boton-nivel" id="button-l3">
+                    BLOQUEADO
+                </button>
+
+            </div>
+
+            <!-- NIVEL 4 -->
+            <div class="tarjeta-nivel bloqueado" id="card-level-4">
+
+                <div class="candado">🔒</div>
+
+                <h2>NIVEL 4</h2>
+
+                <p class="nombre-nivel">
+                    Cuevas Oscuras
+                </p>
+
+                <div class="contenedor-img-nivel">
+                    <img 
+                        src="img/escenarios/escenario4.png" 
+                        class="imagen-nivel"
+                        alt="Cuevas Oscuras"
+                    >
+                </div>
+
+                <button class="boton-nivel" id="button-l4">
+                    BLOQUEADO
+                </button>
+
+            </div>
+
+            <!-- NIVEL 5 -->
+            <div class="tarjeta-nivel bloqueado" id="card-level-5">
+
+                <div class="candado">🔒</div>
+
+                <h2>NIVEL 5</h2>
+
+                <p class="nombre-nivel">
+                    Castillo Oscuro
+                </p>
+
+                <div class="contenedor-img-nivel">
+                    <img 
+                        src="img/escenarios/escenario5.png" 
+                        class="imagen-nivel"
+                        alt="Castillo Oscuro"
+                    >
+                </div>
+
+                <button class="boton-nivel" id="button-l5">
+                    BLOQUEADO
+                </button>
+
+            </div>
+
+            <!-- NIVEL 6 -->
+            <div class="tarjeta-nivel bloqueado" id="card-level-6">
+
+                <div class="candado">🔒</div>
+
+                <h2>NIVEL 6</h2>
+
+                <p class="nombre-nivel">
+                    Cima Maldita
+                </p>
+
+                <div class="contenedor-img-nivel">
+                    <img 
+                        src="img/escenarios/escenario6.png" 
+                        class="imagen-nivel"
+                        alt="Cima Maldita"
+                    >
+                </div>
+
+                <button class="boton-nivel" id="button-l6">
+                    BLOQUEADO
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- BOTÓN REINICIAR PROGRESO -->
+        <button id="borrar-progreso" class="boton-reiniciar-progreso">
+            Reiniciar Progreso
+        </button>
+
+    </div>
+
+    <script>
+
+        /*
+            SISTEMA DE PROGRESO
+
+            progresoJuego = 1  -> solo nivel 1 desbloqueado
+            progresoJuego = 2  -> nivel 1 y 2 desbloqueados
+            progresoJuego = 3  -> nivel 1, 2 y 3 desbloqueados
+            progresoJuego = 4  -> hasta nivel 4
+            progresoJuego = 5  -> hasta nivel 5
+            progresoJuego = 6  -> todos los niveles desbloqueados
+        */
+
+        let progresoJuego = localStorage.getItem("progresoJuego");
+
+        if (progresoJuego == null) {
+            progresoJuego = 1;
+            localStorage.setItem("progresoJuego", progresoJuego);
+        }
+
+        progresoJuego = parseInt(progresoJuego);
+
+        const niveles = [
+            {
+                numero: 1,
+                card: "card-level-1",
+                boton: "button-l1",
+                archivo: "nivel1.html"
+            },
+            {
+                numero: 2,
+                card: "card-level-2",
+                boton: "button-l2",
+                archivo: "nivel2.html"
+            },
+            {
+                numero: 3,
+                card: "card-level-3",
+                boton: "button-l3",
+                archivo: "nivel3.html"
+            },
+            {
+                numero: 4,
+                card: "card-level-4",
+                boton: "button-l4",
+                archivo: "nivel4.html"
+            },
+            {
+                numero: 5,
+                card: "card-level-5",
+                boton: "button-l5",
+                archivo: "nivel5.html"
+            },
+            {
+                numero: 6,
+                card: "card-level-6",
+                boton: "button-l6",
+                archivo: "nivel6.html"
+            }
+        ];
+
+        for (let i = 0; i < niveles.length; i++) {
+
+            let nivel = niveles[i];
+
+            let tarjeta = document.getElementById(nivel.card);
+            let boton = document.getElementById(nivel.boton);
+
+            if (progresoJuego >= nivel.numero) {
+
+                tarjeta.classList.remove("bloqueado");
+                tarjeta.classList.add("desbloqueado");
+
+                boton.innerHTML = "JUGAR";
+                boton.disabled = false;
+
+                boton.addEventListener("click", () => {
+                    window.location.href = nivel.archivo;
+                });
+
+            } else {
+
+                tarjeta.classList.add("bloqueado");
+
+                boton.innerHTML = "BLOQUEADO";
+                boton.disabled = true;
+            }
+        }
+
+        //
+        // REINICIAR PROGRESO
+        //
+        const botonBorrarProgreso = document.getElementById("borrar-progreso");
+
+        if (botonBorrarProgreso) {
+
+            botonBorrarProgreso.addEventListener("click", () => {
+
+                const confirmar = confirm("¿Seguro que quieres reiniciar todo el progreso del juego?");
+
+                if (confirmar == true) {
+
+                    localStorage.setItem("progresoJuego", 1);
+
+                    localStorage.removeItem("poderDorado");
+                    localStorage.removeItem("juegoCompletado");
+
+                    alert("El progreso se reinició correctamente.");
+
+                    window.location.reload();
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>

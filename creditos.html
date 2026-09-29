@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Créditos - El Último Cazador</title>
+
+    <link rel="stylesheet" href="style/creditos.css">
+</head>
+
+<body>
+
+    <div class="pantalla-creditos">
+
+        <!-- NIEBLA -->
+        <div class="niebla niebla1"></div>
+        <div class="niebla niebla2"></div>
+        <div class="niebla niebla3"></div>
+        <div class="niebla niebla4"></div>
+
+        <!-- PARTÍCULAS -->
+        <div class="particula p1"></div>
+        <div class="particula p2"></div>
+        <div class="particula p3"></div>
+        <div class="particula p4"></div>
+        <div class="particula p5"></div>
+        <div class="particula p6"></div>
+
+        <!-- CONTENEDOR DE CRÉDITOS -->
+        <div class="contenedor-scroll">
+
+            <div class="creditos-scroll">
+
+                <h1>EL ÚLTIMO CAZADOR</h1>
+
+                <h2>Créditos</h2>
+
+                <p class="tipo-proyecto">
+                    Proyecto escolar de videojuego
+                </p>
+
+                <section>
+                    <h3>Desarrollado por</h3>
+                    <p>Osiel Martínez</p>
+                </section>
+
+                <section>
+                    <h3>Programación</h3>
+                    <p>
+                        Movimiento del personaje<br>
+                        Sistema de cámara<br>
+                        Sistema de enemigos<br>
+                        Sistema de ataque con espada<br>
+                        Sistema de daño y vida<br>
+                        Sistema de niveles desbloqueables<br>
+                        Menús e interfaz del juego
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Datos Generales</h3>
+
+                    <h3>Universidad de Colima</h3>
+                    <p>Facultad de Telemática</p>
+
+                    <br><br>
+
+                    <h3>Maestro</h3>
+                    <p>Juan Luis Campos Salcedo</p>
+
+                    <br><br>
+
+                    <h3>Materia</h3>
+                    <p>Programación Orientada a Objetos</p>
+                </section>
+
+                <section>
+                    <h3>Diseño del juego</h3>
+                    <p>
+                        Historia<br>
+                        Niveles<br>
+                        Criaturas<br>
+                        Obstáculos<br>
+                        Mecánicas principales
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Arte y recursos visuales</h3>
+                    <p>
+                        Diseño del cazador<br>
+                        Escenarios del juego<br>
+                        Criaturas y enemigos<br>
+                        Portales, paneles y elementos visuales<br><br>
+                        Desarrollados con apoyo de ChatGPT
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Sonido</h3>
+                    <p>
+                        Efectos de sonido de pasos<br>
+                        Ataque con espada<br>
+                        Daño, criaturas, victoria y derrota<br><br>
+                        Recursos utilizados de Pixabay con fines educativos
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Agradecimientos</h3>
+                    <p>
+                        A mi profesor por la guía durante el desarrollo del proyecto.<br>
+                        A quienes apoyaron durante la creación del juego.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Gracias por jugar</h3>
+                    <p>
+                        El ascenso del cazador apenas comienza...
+                    </p>
+                </section>
+
+                <section>
+                    <h3>2026</h3>
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- BOTÓN QUE APARECE AL FINAL -->
+        <a href="menu-principal.html" class="boton-volver">
+            Volver al Menú
+        </a>
+
+    </div>
+
+    <!-- MÚSICA DE CRÉDITOS -->
+    <script>
+        const creditsSound = new Audio("sounds/credits-sound.mp3");
+
+        creditsSound.volume = 0.5;
+        creditsSound.loop = true;
+
+        window.addEventListener("load", () => {
+            creditsSound.currentTime = 0;
+
+            creditsSound.play().catch(() => {
+                document.addEventListener("click", () => {
+                    creditsSound.currentTime = 0;
+                    creditsSound.play();
+                }, { once: true });
+            });
+        });
+
+        const botonVolver = document.querySelector(".boton-volver");
+
+        botonVolver.addEventListener("click", () => {
+            creditsSound.pause();
+            creditsSound.currentTime = 0;
+        });
+    </script>
+
+</body>
+</html>

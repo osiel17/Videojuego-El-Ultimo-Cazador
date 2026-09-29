@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nivel 1 - El Último Cazador</title>
+
+    <link rel="stylesheet" href="style/nivel1.css">
+</head>
+
+<body>
+
+<center>
+
+    <!------- PANEL GAMEOVER -------->
+    <div class="panel-final panel-gameover" id="mostrar-gameover">
+
+        <div class="caja-final caja-derrota">
+
+            <div class="simbolo-final simbolo-derrota">
+                ☠
+            </div>
+
+            <h1>HAS CAÍDO</h1>
+
+            <p>
+                La oscuridad del bosque consumió al cazador.
+            </p>
+
+            <p class="texto-secundario-final">
+                Vuelve a intentarlo y alcanza el portal antes de que la maldición despierte.
+            </p>
+
+            <div class="botones-final">
+
+                <button class="boton-final boton-reintentar" id="restart-js">
+                    Reintentar
+                </button>
+
+                <button class="boton-final boton-menu" id="menu-js">
+                    Volver al Menú
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--------- PANEL VICTORIA ----------->
+    <div class="panel-final panel-victoria" id="panel-victoriajs">
+
+        <div class="caja-final caja-victoria">
+
+            <div class="simbolo-final simbolo-victoria">
+                ✦
+            </div>
+
+            <h1>PORTAL ACTIVADO</h1>
+
+            <p>
+                El cazador encontró el camino hacia la montaña.
+            </p>
+
+            <p class="texto-secundario-final">
+                La primera zona ha sido superada, pero la maldición apenas comienza.
+            </p>
+
+            <div class="botones-final">
+
+                <button class="boton-final boton-siguiente" id="nextlevel-js">
+                    Siguiente Nivel
+                </button>
+
+                <button class="boton-final boton-menu" id="menu-victoria">
+                    Volver al Menú
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+   <!------- PANEL INSTRUCCIONES ------->
+<div class="panel-instrucciones" id="panel-instrucciones">
+
+    <div class="caja-panel-inicio">
+
+        <div class="icono-panel">
+            ⚔️
+        </div>
+
+        <h1>¿CÓMO JUGAR?</h1>
+
+        <p class="descripcion-panel">
+            Aprende los controles básicos antes de comenzar tu ascenso.
+        </p>
+
+        <div class="contenedor-controles">
+
+            <!-- MOVIMIENTO -->
+            <div class="bloque-control">
+
+                <h2>Movimiento</h2>
+
+                <p>
+                    Puedes moverte usando WASD o las flechas del teclado.
+                </p>
+
+                <div class="zona-teclas">
+
+                    <div class="grupo-teclas">
+                        <div class="fila">
+                            <div class="tecla">W</div>
+                        </div>
+
+                        <div class="fila">
+                            <div class="tecla">A</div>
+                            <div class="tecla">S</div>
+                            <div class="tecla">D</div>
+                        </div>
+                    </div>
+
+                    <div class="grupo-teclas">
+                        <div class="fila">
+                            <div class="tecla">↑</div>
+                        </div>
+
+                        <div class="fila">
+                            <div class="tecla">←</div>
+                            <div class="tecla">↓</div>
+                            <div class="tecla">→</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ATAQUE -->
+            <div class="bloque-control">
+
+                <h2>Ataque</h2>
+
+                <p>
+                    Usa tu espada para derrotar criaturas cercanas.
+                </p>
+
+                <div class="tecla-espacio">
+                    ESPACIO
+                </div>
+
+            </div>
+
+        </div>
+
+        <button id="continuar1" class="boton-continuar">
+            Continuar
+        </button>
+
+    </div>
+
+</div>
+
+
+   <!------- PANEL OBJETIVO ------->
+<div class="panel-objetivo" id="panel-objetivo">
+
+    <div class="caja-panel-inicio">
+
+        <div class="icono-panel">
+            ✦
+        </div>
+
+        <h1>Objetivo del Nivel 1</h1>
+
+        <p class="descripcion-panel">
+            El cazador ha llegado al Bosque Marchito, una zona infestada por criaturas oscuras.
+        </p>
+
+        <div class="contenido-objetivo">
+
+            <p>
+                Debes llegar al portal del escenario sin morir.
+            </p>
+
+            <p>
+                Ten cuidado con:
+            </p>
+
+            <ul>
+                <li>👻 Fantasmas</li>
+                <li>🦅 Aves</li>
+                <li>🌵 Cactus</li>
+            </ul>
+
+            <p>
+                Si tu vida llega a 0 perderás la partida.
+            </p>
+
+        </div>
+
+        <button id="comenzar-juego">
+            Comenzar Juego
+        </button>
+
+    </div>
+
+</div>
+
+
+    <!------- IMAGEN EN LA BARRA DE SALUD -------->
+    <div class="contenedor-imagen">
+        <img 
+            src="img/personaje/perfil-asesino.png" 
+            class="perfil-asesino"
+        >
+    </div>
+
+
+    <!------- CONTENEDOR DE LA BARRA DE SALUD -------->
+    <div class="contenedor-vida">
+        <div class="barra-vida" id="vida-js"></div>
+    </div>
+
+
+    <!------- CANVAS PRINCIPAL ------->
+    <canvas 
+        id="panel"
+        width="1750"
+        height="1050"
+        class="canvas-juego">
+    </canvas>
+
+</center>
+
+
+<!-- ===================================================== -->
+<!-- ================= SCRIPTS DEL JUEGO ================= -->
+<!-- ===================================================== -->
+
+<!-- CLASES DE CRIATURAS -->
+<script src="js/fantasma.js"></script>
+<script src="js/cruz.js"></script>
+<script src="js/cactus.js"></script>
+<script src="js/piedra.js"></script>
+<script src="js/minifantasma.js"></script>
+<script src="js/araña.js"></script>
+<script src="js/serpiente.js"></script>
+
+<!-- ARCHIVOS DEL NIVEL 1 -->
+<script src="js/nivel1/configNivel1.js"></script>
+<script src="js/nivel1/assetsNivel1.js"></script>
+<script src="js/nivel1/jugador.js"></script>
+<script src="js/nivel1/ataque.js"></script>
+<script src="js/nivel1/colisiones.js"></script>
+<script src="js/nivel1/camara.js"></script>
+<script src="js/nivel1/enemigosNivel1.js"></script>
+<script src="js/nivel1/interfaz.js"></script>
+<script src="js/nivel1/controles.js"></script>
+<script src="js/nivel1/mainNivel1.js"></script>
+
+</body>
+</html>

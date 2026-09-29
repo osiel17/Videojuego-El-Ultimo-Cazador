@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nivel 6 - El Último Cazador</title>
+
+    <link rel="stylesheet" href="style/nivel6.css">
+</head>
+
+<body>
+
+<center>
+
+<!------- PANEL GAMEOVER -------->
+<div class="panel-final panel-gameover" id="mostrar-gameover">
+
+    <div class="caja-final caja-derrota">
+
+        <div class="simbolo-final simbolo-derrota">
+            ☠
+        </div>
+
+        <h1>EL CAZADOR HA CAÍDO</h1>
+
+        <p>
+            El Rey Oscuro ha detenido tu último ascenso.
+        </p>
+
+        <p class="texto-secundario-final">
+            La tormenta sigue rugiendo sobre la cima. Levántate de nuevo y derrota al señor de la maldición.
+        </p>
+
+        <div class="botones-final">
+
+            <button class="boton-final boton-reintentar" id="restart-js">
+                Reintentar
+            </button>
+
+            <button class="boton-final boton-menu" id="menu-js">
+                Volver al Menú
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!--------- PANEL VICTORIA ----------->
+<div class="panel-final panel-victoria" id="panel-victoriajs">
+
+    <div class="caja-final caja-victoria">
+
+        <div class="simbolo-final simbolo-victoria">
+            ✦
+        </div>
+
+        <h1>REY OSCURO DERROTADO</h1>
+
+        <p>
+            El cazador venció al origen de la maldición.
+        </p>
+
+        <p class="texto-secundario-final">
+            La tormenta comienza a disiparse y la cima vuelve a ver la luz. La montaña ha sido liberada.
+        </p>
+
+        <div class="botones-final">
+
+            <button class="boton-final boton-siguiente" id="nextlevel-js">
+                Ver Créditos
+            </button>
+
+            <button class="boton-final boton-menu" id="menu-victoria">
+                Volver al Menú
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!------- PANEL OBJETIVO ------->
+<div class="panel-objetivo" id="panel-objetivo">
+
+    <div class="caja-panel-inicio">
+
+        <div class="icono-panel">
+            👑
+        </div>
+
+        <h1>Objetivo del Nivel 6</h1>
+
+        <p class="descripcion-panel">
+            El cazador ha llegado a la Cima Maldita, el lugar donde nació la oscuridad que consume la montaña.
+        </p>
+
+        <div class="contenido-objetivo">
+
+            <p>
+                Enfrenta al Rey Oscuro y termina con la maldición de una vez por todas.
+            </p>
+
+            <p>
+                Ten cuidado con:
+            </p>
+
+            <ul>
+                <li>👑 Rey Oscuro</li>
+                <li>👻 Criaturas invocadas</li>
+                <li>⚡ Tormenta de la cima</li>
+            </ul>
+
+            <p>
+                Usa el poder dorado obtenido en el castillo para sobrevivir a la batalla final.
+            </p>
+
+        </div>
+
+        <button id="comenzar-juego">
+            Comenzar Batalla
+        </button>
+
+    </div>
+
+</div>
+
+    <!------- PANEL MEJORAS ------->
+    <div class="panel-mejoras" id="panel-mejoras">
+
+        <div class="caja-mejoras">
+
+            <div class="icono-panel">
+                ⚔️
+            </div>
+
+            <h1>Mejoras del Cazador</h1>
+
+            <p class="texto-mejoras">
+                Estas son las mejoras del Cazador Dorado.
+            </p>
+
+            <div class="lista-mejoras">
+
+                <div class="mejora-card" id="mejora-dano">
+                    <div class="icono-mejora">⚔️</div>
+                    <h2>Daño Mejorado</h2>
+                    <p>
+                        La espada causa mucho más daño a las criaturas.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-rango">
+                    <div class="icono-mejora">✨</div>
+                    <h2>Mayor Salud</h2>
+                    <p>
+                        Tu salud sera de 500
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-cooldown">
+                    <div class="icono-mejora">🔥</div>
+                    <h2>Ataque Rápido</h2>
+                    <p>
+                        El cazador puede atacar con mayor frecuencia.
+                    </p>
+                </div>
+
+                <div class="mejora-card" id="mejora-velocidad">
+                    <div class="icono-mejora">💨</div>
+                    <h2>Movimiento Ágil</h2>
+                    <p>
+                        La velocidad de movimiento del cazador aumenta.
+                    </p>
+                </div>
+
+            </div>
+
+            <button id="continuar-mejoras" class="boton-continuar-mejoras">
+                Continuar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!------- IMAGEN EN LA BARRA DE SALUD -------->
+    <div class="contenedor-imagen">
+        <img 
+            src="img/personaje/perfil-asesino.png" 
+            class="perfil-asesino"
+            alt="Perfil del cazador"
+        >
+    </div>
+
+
+    <!------- CONTENEDOR DE LA BARRA DE SALUD -------->
+   <div class="contenedor-vida">
+        <div class="barra-vida" id="vida-js"></div>
+        <span class="texto-vida" id="texto-vida-js">100 / 100</span>
+   </div>
+
+
+    <!------- CANVAS PRINCIPAL ------->
+    <canvas 
+        id="panel"
+        width="1750"
+        height="1050"
+        class="canvas-juego">
+    </canvas>
+
+    <!------- EFECTOS DE TORMENTA ------->
+    <div class="efectos-tormenta">
+
+    <div class="lluvia-natural">
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    <span class="gota"></span>
+    </div>
+
+    <div class="oscurecer-pantalla"></div>
+
+    <div class="rayo rayo-1"></div>
+    <div class="rayo rayo-2"></div>
+
+    <div class="flash-rayo"></div>
+
+</div>
+</center>
+
+
+<!-- ===================================================== -->
+<!-- ================= SCRIPTS DEL JUEGO ================= -->
+<!-- ===================================================== -->
+
+<!-- CLASES DE CRIATURAS -->
+ <script src="js/reyOscuro.js"></script>
+<script src="js/fantasma.js"></script>
+<script src="js/cruz.js"></script>
+<script src="js/cactus.js"></script>
+<script src="js/piedra.js"></script>
+<script src="js/minifantasma.js"></script>
+<script src="js/araña.js"></script>
+<script src="js/serpiente.js"></script>
+
+<!-- ARCHIVOS DEL NIVEL 4 -->
+<script src="js/nivel6/configNivel6.js"></script>
+<script src="js/nivel6/assetsNivel6.js"></script>
+<script src="js/nivel6/jugador6.js"></script>
+<script src="js/nivel6/ataque6.js"></script>
+<script src="js/nivel6/colisiones.js"></script>
+<script src="js/nivel6/camara.js"></script>
+<script src="js/nivel6/enemigosNivel6.js"></script>
+<script src="js/nivel6/interfaz6.js"></script>
+<script src="js/nivel6/controles.js"></script>
+<script src="js/nivel6/mainNivel6.js"></script>
+
+</body>
+</html>
