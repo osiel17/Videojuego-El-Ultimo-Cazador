@@ -1,0 +1,1034 @@
+/* ===================================================== */
+/* ================= CONFIGURACIÓN BASE ================= */
+/* ===================================================== */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    background-color: black;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===================================================== */
+/* ======================= CANVAS ======================= */
+/* ===================================================== */
+
+.canvas-juego {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(100vw, calc(100vh * 1.6667));
+    height: min(100vh, calc(100vw / 1.6667));
+
+    display: block;
+
+    background: black;
+}
+
+/* ===================================================== */
+/* ==================== BARRA VIDA ===================== */
+/* ===================================================== */
+
+.contenedor-vida {
+    position: fixed;
+
+    left: 120px;
+    bottom: 25px;
+
+    width: 350px;
+    height: 40px;
+
+    border: 4px solid white;
+    border-radius: 15px;
+
+    background-color: #222;
+
+    overflow: hidden;
+
+    z-index: 1000;
+}
+
+.barra-vida {
+    width: 100%;
+    height: 100%;
+
+    float: right;
+
+    transition: 0.3s;
+
+    color: white;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    text-align: center;
+    line-height: 40px;
+
+    background-color: lime;
+
+    box-shadow: 0 0 15px lime;
+}
+
+/* ===================================================== */
+/* ================= PERFIL PERSONAJE ================== */
+/* ===================================================== */
+
+.contenedor-imagen {
+    position: fixed;
+
+    left: 60px;
+    bottom: 28px;
+
+    width: 50px;
+    height: 40px;
+
+    overflow: hidden;
+
+    z-index: 1000;
+}
+
+.perfil-asesino {
+    width: 100%;
+    height: 100%;
+}
+
+/* ===================================================== */
+/* ========== PANEL INSTRUCCIONES Y OBJETIVO ============ */
+/* ===================================================== */
+
+.panel-instrucciones,
+.panel-objetivo {
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+
+    left: 0;
+    top: 0;
+
+    background:
+        radial-gradient(circle at center, rgba(0, 204, 255, 0.14), transparent 35%),
+        rgba(0, 0, 0, 0.9);
+
+    color: white;
+
+    z-index: 9998;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    animation: aparecerFondoPanel 0.6s ease-in-out;
+}
+
+/* Panel objetivo empieza oculto */
+.panel-objetivo {
+    display: none;
+}
+
+/* Niebla del panel */
+.panel-instrucciones::before,
+.panel-objetivo::before {
+    content: "";
+
+    position: absolute;
+
+    width: 900px;
+    height: 220px;
+
+    background: rgba(180, 240, 255, 0.13);
+
+    filter: blur(45px);
+
+    border-radius: 50%;
+
+    top: 50%;
+    left: -320px;
+
+    animation: nieblaPanelInicio 9s infinite linear;
+}
+
+/* Luz azul secundaria */
+.panel-instrucciones::after,
+.panel-objetivo::after {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle, rgba(0, 204, 255, 0.18), transparent 65%);
+
+    animation: pulsoLuzPanelInicio 3s infinite ease-in-out;
+}
+
+/* Caja principal de instrucciones y objetivo */
+.caja-panel-inicio {
+    position: relative;
+
+    width: min(92vw, 1050px);
+    max-height: 90vh;
+
+    padding: clamp(20px, 3vw, 38px) clamp(22px, 4vw, 55px);
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5, 15, 25, 0.96),
+            rgba(0, 0, 0, 0.96)
+        );
+
+    border: 4px solid #00ccff;
+
+    box-shadow:
+        0 0 25px rgba(0, 204, 255, 0.85),
+        0 0 70px rgba(0, 120, 255, 0.55),
+        inset 0 0 30px rgba(0, 204, 255, 0.18);
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    animation: entrarCajaPanelInicio 0.8s ease-out;
+}
+
+/* Icono superior */
+.icono-panel {
+    width: 90px;
+    height: 90px;
+
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+
+    border: 3px solid #00ccff;
+
+    background: rgba(0, 45, 70, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 48px;
+
+    box-shadow:
+        0 0 20px #00ccff,
+        inset 0 0 16px #004466;
+
+    animation: flotarIconoPanel 2s infinite ease-in-out;
+}
+
+/* Títulos de los paneles */
+.caja-panel-inicio h1 {
+    color: #dffaff;
+
+    font-size: clamp(32px, 5vw, 54px);
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 12px #00ccff,
+        0 0 30px #0077ff,
+        0 0 65px #0033aa;
+}
+
+.descripcion-panel {
+    color: #b8eaff;
+
+    font-size: clamp(17px, 2.2vw, 22px);
+    max-width: 850px;
+
+    margin-bottom: 28px;
+
+
+    line-height: 1.35;
+
+    text-shadow: 0 0 8px #00ccff;
+}
+
+/* ===================================================== */
+/* ================= CONTROLES NUEVOS ================== */
+/* ===================================================== */
+
+.contenedor-controles {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+
+    gap: clamp(16px, 3vw, 28px);
+
+    margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+
+    .contenedor-controles {
+        grid-template-columns: 1fr;
+    }
+
+    .bloque-control {
+        min-height: auto;
+        padding: 18px;
+    }
+
+    .zona-teclas {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    .tecla {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+
+    .tecla-espacio {
+        width: 210px;
+        height: 55px;
+        font-size: 22px;
+    }
+
+    .icono-panel {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+}
+
+.bloque-control {
+    min-height: 310px;
+
+    padding: 25px;
+
+    border: 3px solid #00ccff;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 40, 60, 0.78),
+            rgba(0, 8, 15, 0.92)
+        );
+
+    box-shadow:
+        0 0 18px rgba(0, 204, 255, 0.65),
+        inset 0 0 18px rgba(0, 204, 255, 0.18);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloque-control h2 {
+    color: #bff7ff;
+
+    font-size: 32px;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 8px #00ccff,
+        0 0 18px #0077ff;
+}
+
+.bloque-control p {
+    color: #dffaff;
+
+    font-size: 20px;
+
+    line-height: 1.35;
+
+    margin-bottom: 20px;
+
+    text-shadow: 0 0 6px #00ccff;
+}
+
+.zona-teclas {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 35px;
+}
+
+.grupo-teclas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fila {
+    display: flex;
+    justify-content: center;
+}
+
+/* Teclas normales */
+.tecla {
+    width: 62px;
+    height: 62px;
+
+    margin: 5px;
+
+    border: 3px solid #00ccff;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(to bottom, #003344, #00111a);
+
+    color: #eaffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    box-shadow:
+        0 0 14px #00ccff,
+        inset 0 0 10px #006688;
+}
+
+/* Tecla espacio */
+.tecla-espacio {
+    width: 260px;
+    height: 65px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid #00ccff;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(to bottom, #003344, #00111a);
+
+    color: #eaffff;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    box-shadow:
+        0 0 18px #00ccff,
+        inset 0 0 14px #006688;
+
+    animation: brilloTeclaEspacio 1.8s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ================= PANEL OBJETIVO NUEVO ============== */
+/* ===================================================== */
+
+.contenido-objetivo {
+    width: min(100%, 850px);
+
+    padding: clamp(18px, 3vw, 25px) clamp(20px, 4vw, 35px);
+
+    border: 3px solid #00ccff;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 40, 60, 0.72),
+            rgba(0, 8, 15, 0.92)
+        );
+
+    box-shadow:
+        0 0 18px rgba(0, 204, 255, 0.65),
+        inset 0 0 18px rgba(0, 204, 255, 0.18);
+
+    margin-bottom: 30px;
+}
+
+.contenido-objetivo p {
+    color: #e8faff;
+
+    font-size: clamp(17px, 2.3vw, 25px);
+
+    line-height: 1.4;
+
+    margin-bottom: 14px;
+
+    text-shadow: 0 0 6px #00ccff;
+}
+
+.contenido-objetivo ul {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 12px 0 18px 0;
+}
+
+.contenido-objetivo li {
+    color: #bff7ff;
+
+     font-size: clamp(18px, 2.4vw, 27px);  
+
+    margin: 8px 0;
+
+    text-shadow:
+        0 0 8px #00ccff,
+        0 0 16px #0077ff;
+}
+
+/* ===================================================== */
+/* ================= BOTONES PANELES =================== */
+/* ===================================================== */
+
+.boton-continuar,
+#comenzar-juego {
+    width: 260px;
+    height: 65px;
+
+    border: 3px solid #00ccff;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(to bottom, #00445c, #001923);
+
+    color: #eaffff;
+
+    font-size: 26px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 0 18px #00ccff,
+        inset 0 0 12px #007799;
+
+    transition: 0.25s;
+}
+
+.boton-continuar:hover,
+#comenzar-juego:hover {
+    transform: scale(1.08);
+
+    background:
+        linear-gradient(to bottom, #006b8f, #002b3a);
+
+    box-shadow:
+        0 0 30px #00ccff,
+        inset 0 0 18px #00ccff;
+}
+
+/* ===================================================== */
+/* ================== PANEL FINAL BASE ================= */
+/* ===================================================== */
+
+.panel-final {
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+
+    left: 0;
+    top: 0;
+
+    background:
+        radial-gradient(circle at center, rgba(0, 200, 255, 0.12), transparent 35%),
+        rgba(0, 0, 0, 0.88);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    overflow: hidden;
+
+    animation: aparecerFondoFinal 0.6s ease-in-out;
+}
+
+/* Niebla visual del panel */
+.panel-final::before {
+    content: "";
+
+    position: absolute;
+
+    width: 900px;
+    height: 220px;
+
+    background: rgba(180, 240, 255, 0.12);
+
+    filter: blur(45px);
+
+    border-radius: 50%;
+
+    top: 55%;
+    left: -300px;
+
+    animation: nieblaFinal 8s infinite linear;
+}
+
+/* Luz secundaria */
+.panel-final::after {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle, rgba(0, 204, 255, 0.18), transparent 65%);
+
+    animation: pulsoLuzFinal 3s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ==================== CAJA FINAL ===================== */
+/* ===================================================== */
+
+.caja-final {
+    position: relative;
+
+    width: 850px;
+    min-height: 500px;
+
+    padding: 45px 60px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    color: white;
+
+    z-index: 10;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5, 15, 25, 0.96),
+            rgba(0, 0, 0, 0.96)
+        );
+
+    border: 4px solid #00ccff;
+
+    box-shadow:
+        0 0 25px rgba(0, 204, 255, 0.8),
+        0 0 60px rgba(0, 80, 255, 0.5),
+        inset 0 0 30px rgba(0, 204, 255, 0.18);
+
+    animation: entrarCajaFinal 0.8s ease-out;
+}
+
+/* Caja derrota */
+.caja-derrota {
+    border-color: #ff3040;
+
+    box-shadow:
+        0 0 25px rgba(255, 48, 64, 0.85),
+        0 0 60px rgba(120, 0, 0, 0.6),
+        inset 0 0 30px rgba(255, 48, 64, 0.16);
+}
+
+/* Caja victoria */
+.caja-victoria {
+    border-color: #00ccff;
+
+    box-shadow:
+        0 0 25px rgba(0, 204, 255, 0.85),
+        0 0 70px rgba(0, 120, 255, 0.7),
+        inset 0 0 30px rgba(0, 204, 255, 0.18);
+}
+
+/* ===================================================== */
+/* ===================== SÍMBOLO ======================= */
+/* ===================================================== */
+
+.simbolo-final {
+    width: 110px;
+    height: 110px;
+
+    margin: 0 auto 20px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    font-size: 62px;
+    font-weight: bold;
+
+    animation: flotarSimbolo 2s infinite ease-in-out;
+}
+
+.simbolo-derrota {
+    color: #ffdddd;
+
+    border: 3px solid #ff3040;
+
+    background: rgba(80, 0, 0, 0.7);
+
+    box-shadow:
+        0 0 20px #ff3040,
+        inset 0 0 18px #550000;
+}
+
+.simbolo-victoria {
+    color: #eaffff;
+
+    border: 3px solid #00ccff;
+
+    background: rgba(0, 50, 80, 0.7);
+
+    box-shadow:
+        0 0 20px #00ccff,
+        inset 0 0 18px #004466;
+}
+
+/* ===================================================== */
+/* ======================= TEXTOS ====================== */
+/* ===================================================== */
+
+.caja-final h1 {
+    font-size: 58px;
+
+    margin-bottom: 18px;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 12px currentColor,
+        0 0 30px currentColor;
+}
+
+.caja-derrota h1 {
+    color: #ff4b5c;
+}
+
+.caja-victoria h1 {
+    color: #bff7ff;
+}
+
+.caja-final p {
+    font-size: 26px;
+
+    line-height: 1.4;
+
+    margin-bottom: 12px;
+
+    color: #e8faff;
+}
+
+.texto-secundario-final {
+    font-size: 20px !important;
+
+    color: #a9cbd6 !important;
+
+    margin-bottom: 35px !important;
+}
+
+/* ===================================================== */
+/* ======================= BOTONES ===================== */
+/* ===================================================== */
+
+.botones-final {
+    display: flex;
+
+    justify-content: center;
+    gap: 35px;
+
+    margin-top: 35px;
+}
+
+.boton-final {
+    width: 240px;
+    height: 75px;
+
+    border-radius: 18px;
+
+    font-size: 26px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    color: white;
+
+    letter-spacing: 1px;
+}
+
+/* Botón reintentar */
+.boton-reintentar {
+    border: 3px solid #ff3040;
+
+    background:
+        linear-gradient(to bottom, #65151d, #230609);
+
+    box-shadow:
+        0 0 18px #ff3040,
+        inset 0 0 12px #891b25;
+}
+
+.boton-reintentar:hover {
+    transform: scale(1.08);
+
+    background:
+        linear-gradient(to bottom, #8f1d28, #35080d);
+
+    box-shadow:
+        0 0 30px #ff3040,
+        inset 0 0 18px #ff3040;
+}
+
+/* Botón siguiente nivel */
+.boton-siguiente {
+    border: 3px solid #00ccff;
+
+    background:
+        linear-gradient(to bottom, #00445c, #001923);
+
+    box-shadow:
+        0 0 18px #00ccff,
+        inset 0 0 12px #007799;
+}
+
+.boton-siguiente:hover {
+    transform: scale(1.08);
+
+    background:
+        linear-gradient(to bottom, #006b8f, #002b3a);
+
+    box-shadow:
+        0 0 30px #00ccff,
+        inset 0 0 18px #00ccff;
+}
+
+/* Botón menú */
+.boton-menu {
+    border: 3px solid #b26cff;
+
+    background:
+        linear-gradient(to bottom, #41205f, #1f0f2e);
+
+    box-shadow:
+        0 0 18px #a855ff,
+        inset 0 0 12px #6a2ca0;
+}
+
+.boton-menu:hover {
+    transform: scale(1.08);
+
+    background:
+        linear-gradient(to bottom, #5b2d86, #2c1440);
+
+    box-shadow:
+        0 0 30px #a855ff,
+        inset 0 0 18px #b26cff;
+}
+
+/* ===================================================== */
+/* ===================== KEYFRAMES ===================== */
+/* ===================================================== */
+
+@keyframes aparecerFondoPanel {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes entrarCajaPanelInicio {
+    0% {
+        opacity: 0;
+        transform: scale(0.75) translateY(80px);
+    }
+
+    70% {
+        transform: scale(1.04) translateY(-8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes nieblaPanelInicio {
+    0% {
+        transform: translateX(0);
+        opacity: 0.16;
+    }
+
+    50% {
+        opacity: 0.38;
+    }
+
+    100% {
+        transform: translateX(160vw);
+        opacity: 0.16;
+    }
+}
+
+@keyframes pulsoLuzPanelInicio {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.45;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.78;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.45;
+    }
+}
+
+@keyframes flotarIconoPanel {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes brilloTeclaEspacio {
+    0% {
+        box-shadow:
+            0 0 12px #00ccff,
+            inset 0 0 10px #006688;
+    }
+
+    50% {
+        box-shadow:
+            0 0 28px #00ccff,
+            0 0 45px rgba(0, 119, 255, 0.6),
+            inset 0 0 18px #00ccff;
+    }
+
+    100% {
+        box-shadow:
+            0 0 12px #00ccff,
+            inset 0 0 10px #006688;
+    }
+}
+
+@keyframes aparecerFondoFinal {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes entrarCajaFinal {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(80px);
+    }
+
+    70% {
+        transform: scale(1.05) translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes flotarSimbolo {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes nieblaFinal {
+    0% {
+        transform: translateX(0);
+        opacity: 0.15;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateX(160vw);
+        opacity: 0.15;
+    }
+}
+
+@keyframes pulsoLuzFinal {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.4;
+    }
+}

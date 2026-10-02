@@ -1,0 +1,689 @@
+/* ===================================================== */
+/* ================= CONFIGURACIÓN BASE ================= */
+/* ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background: black;
+
+    overflow: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===================================================== */
+/* ================= CONTENEDOR GENERAL ================ */
+/* ===================================================== */
+
+.contenedor-principal {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: black;
+}
+
+/* Capa oscura encima del fondo */
+.capa-oscura {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    z-index: 2;
+
+    background:
+        radial-gradient(circle at center, rgba(0, 204, 255, 0.12), transparent 35%),
+        rgba(0, 0, 0, 0.58);
+
+    animation: respirarFondoMenu 5s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ======================== NIEBLA ====================== */
+/* ===================================================== */
+
+.niebla-menu {
+    position: absolute;
+
+    width: 900px;
+    height: 180px;
+
+    background: rgba(180, 240, 255, 0.12);
+
+    filter: blur(45px);
+
+    border-radius: 50%;
+
+    z-index: 3;
+}
+
+.niebla-menu1 {
+    top: 45%;
+    left: -400px;
+
+    animation: moverNieblaMenu1 12s infinite linear;
+}
+
+.niebla-menu2 {
+    bottom: 5%;
+    right: -500px;
+
+    animation: moverNieblaMenu2 16s infinite linear;
+}
+
+/* ===================================================== */
+/* ================= TÍTULO DEL MENÚ =================== */
+/* ===================================================== */
+
+.titulo-menu {
+    position: absolute;
+
+    top: clamp(32px, 5vh, 55px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    text-align: center;
+
+    width: 100%;
+
+    padding: 0 20px;
+}
+
+.titulo-menu h1 {
+    color: #dffaff;
+
+    font-size: clamp(36px, 5vw, 62px);
+    letter-spacing: clamp(4px, 0.8vw, 9px);
+
+    white-space: normal;
+
+    text-shadow:
+        0 0 12px #00ccff,
+        0 0 30px #0077ff,
+        0 0 60px #0033aa;
+
+    animation: brilloTituloMenu 3s infinite alternate;
+}
+
+.titulo-menu p {
+    margin-top: 8px;
+
+    color: #b8eaff;
+
+    font-size: clamp(16px, 2vw, 24px);
+    letter-spacing: clamp(2px, 0.35vw, 4px);
+
+    text-shadow:
+        0 0 8px #00ccff,
+        0 0 16px #0077ff;
+
+    animation: parpadearSubtituloMenu 2s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ================= CONTENEDOR NIVELES ================ */
+/* ===================================================== */
+
+.contenedor-niveles {
+    position: absolute;
+
+    width: 100%;
+
+    left: 0;
+    top: clamp(185px, 25vh, 220px);
+
+    z-index: 6;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 220px);
+    grid-template-rows: repeat(2, 280px);
+
+    justify-content: center;
+
+    gap: clamp(18px, 3vh, 26px) clamp(28px, 4vw, 46px);
+}
+
+/* ===================================================== */
+/* ================= TARJETAS DE NIVEL ================= */
+/* ===================================================== */
+
+.tarjeta-nivel {
+    position: relative;
+
+    width: 220px;
+    height: 280px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5, 15, 25, 0.88),
+            rgba(0, 0, 0, 0.94)
+        );
+
+    border: 3px solid #00ccff;
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 18px #00ccff,
+        inset 0 0 18px rgba(0, 204, 255, 0.25);
+
+    backdrop-filter: blur(3px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 16px;
+
+    transition: 0.3s;
+
+    animation: entrarTarjeta 0.8s ease-out;
+}
+
+.tarjeta-nivel:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 0 30px #00ccff,
+        0 0 60px rgba(0, 120, 255, 0.5),
+        inset 0 0 25px rgba(0, 204, 255, 0.35);
+}
+
+.tarjeta-nivel h2 {
+    color: #dffaff;
+
+    font-size: 24px;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 10px #00ccff,
+        0 0 20px #0077ff;
+}
+
+.nombre-nivel {
+    margin-top: 6px;
+
+    color: #9fdfff;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    text-shadow: 0 0 8px #00ccff;
+}
+
+/* ===================================================== */
+/* ================= IMAGEN DEL NIVEL ================== */
+/* ===================================================== */
+
+.contenedor-img-nivel {
+    width: 150px;
+    height: 118px;
+
+    margin-top: 16px;
+
+    border: 3px solid #00ccff;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #07131f,
+            #000000
+        );
+
+    box-shadow:
+        0 0 15px #00ccff,
+        inset 0 0 15px #003344;
+}
+
+.imagen-nivel {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* ===================================================== */
+/* ================= BOTONES DE NIVEL ================== */
+/* ===================================================== */
+
+.boton-nivel {
+    width: 145px;
+    height: 44px;
+
+    margin-top: 18px;
+
+    border: 3px solid #00ccff;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(to bottom, #00445c, #001923);
+
+    color: #eaffff;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 18px #00ccff,
+        inset 0 0 12px #007799;
+
+    transition: 0.25s;
+}
+
+.boton-nivel:hover {
+    transform: scale(1.08);
+
+    background:
+        linear-gradient(to bottom, #006b8f, #002b3a);
+
+    box-shadow:
+        0 0 30px #00ccff,
+        inset 0 0 18px #00ccff;
+}
+
+/* ===================================================== */
+/* ================= NIVELES BLOQUEADOS ================ */
+/* ===================================================== */
+
+.tarjeta-nivel.bloqueado {
+    border-color: #555;
+
+    filter: grayscale(1) brightness(0.55);
+
+    box-shadow:
+        0 0 12px #222,
+        inset 0 0 15px #111;
+}
+
+.tarjeta-nivel.bloqueado:hover {
+    transform: none;
+
+    box-shadow:
+        0 0 12px #222,
+        inset 0 0 15px #111;
+}
+
+.tarjeta-nivel.bloqueado .imagen-nivel {
+    filter: grayscale(1) brightness(0.35);
+}
+
+.tarjeta-nivel.bloqueado .boton-nivel {
+    border-color: #555;
+
+    background:
+        linear-gradient(to bottom, #333, #111);
+
+    color: #999;
+
+    box-shadow:
+        0 0 10px #222,
+        inset 0 0 10px #111;
+
+    cursor: not-allowed;
+}
+
+.tarjeta-nivel.bloqueado .boton-nivel:hover {
+    transform: none;
+}
+
+/* Candado */
+.candado {
+    position: absolute;
+
+    width: 62px;
+    height: 62px;
+
+    top: 120px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    border: 3px solid #777;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 0 15px #000,
+        inset 0 0 12px #333;
+
+    animation: flotarCandado 2s infinite ease-in-out;
+}
+
+.tarjeta-nivel.desbloqueado .candado {
+    display: none;
+}
+
+/* ===================================================== */
+/* ============== BOTÓN REINICIAR PROGRESO ============== */
+/* ===================================================== */
+
+.boton-reiniciar-progreso {
+    position: fixed;
+
+    right: 35px;
+    bottom: 28px;
+
+    width: 245px;
+    height: 52px;
+
+    border: 3px solid #ff3040;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(95, 15, 25, 0.96),
+            rgba(25, 0, 5, 0.96)
+        );
+
+    color: #ffe6e6;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 0 18px rgba(255, 48, 64, 0.85),
+        0 0 35px rgba(130, 0, 20, 0.55),
+        inset 0 0 12px rgba(255, 48, 64, 0.35);
+
+    transition: 0.25s;
+}
+
+.boton-reiniciar-progreso:hover {
+    transform: scale(1.07);
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(140, 25, 35, 0.98),
+            rgba(45, 0, 8, 0.98)
+        );
+
+    box-shadow:
+        0 0 30px #ff3040,
+        0 0 55px rgba(255, 48, 64, 0.65),
+        inset 0 0 18px #ff3040;
+}
+
+.boton-reiniciar-progreso:active {
+    transform: scale(0.96);
+}
+
+/* ===================================================== */
+/* ================= RESPONSIVE BAJO =================== */
+/* ===================================================== */
+
+@media (max-height: 760px) {
+
+    .titulo-menu {
+        top: 20px;
+    }
+
+    .titulo-menu h1 {
+        font-size: 42px;
+    }
+
+    .titulo-menu p {
+        font-size: 17px;
+    }
+
+    .contenedor-niveles {
+        top: 140px;
+
+        grid-template-columns: repeat(3, 200px);
+        grid-template-rows: repeat(2, 245px);
+
+        gap: 18px 30px;
+    }
+
+    .tarjeta-nivel {
+        width: 200px;
+        height: 245px;
+
+        padding-top: 12px;
+    }
+
+    .tarjeta-nivel h2 {
+        font-size: 21px;
+    }
+
+    .nombre-nivel {
+        font-size: 13px;
+    }
+
+    .contenedor-img-nivel {
+        width: 135px;
+        height: 98px;
+
+        margin-top: 12px;
+    }
+
+    .boton-nivel {
+        width: 130px;
+        height: 38px;
+
+        margin-top: 14px;
+
+        font-size: 17px;
+    }
+
+    .candado {
+        top: 105px;
+
+        width: 54px;
+        height: 54px;
+
+        font-size: 28px;
+    }
+
+    .boton-reiniciar-progreso {
+        right: 22px;
+        bottom: 18px;
+
+        width: 210px;
+        height: 42px;
+
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    html,
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .contenedor-principal {
+        min-height: 100vh;
+        height: auto;
+        overflow-y: auto;
+
+        padding-bottom: 90px;
+    }
+
+    .contenedor-niveles {
+        position: relative;
+
+        top: auto;
+
+        padding-top: 170px;
+
+        grid-template-columns: 220px;
+        grid-template-rows: none;
+    }
+
+    .boton-reiniciar-progreso {
+        position: fixed;
+
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: 20px;
+
+        transform: translateX(-50%);
+    }
+
+    .boton-reiniciar-progreso:hover {
+        transform: translateX(-50%) scale(1.05);
+    }
+
+    .boton-reiniciar-progreso:active {
+        transform: translateX(-50%) scale(0.96);
+    }
+}
+
+/* ===================================================== */
+/* ================= KEYFRAMES ========================= */
+/* ===================================================== */
+
+@keyframes respirarFondoMenu {
+    0% {
+        opacity: 0.85;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.85;
+    }
+}
+
+@keyframes moverNieblaMenu1 {
+    0% {
+        transform: translateX(0);
+        opacity: 0.12;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateX(160vw);
+        opacity: 0.12;
+    }
+}
+
+@keyframes moverNieblaMenu2 {
+    0% {
+        transform: translateX(0);
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateX(-160vw);
+        opacity: 0.1;
+    }
+}
+
+@keyframes brilloTituloMenu {
+    0% {
+        text-shadow:
+            0 0 10px #00ccff,
+            0 0 25px #0077ff;
+    }
+
+    100% {
+        text-shadow:
+            0 0 20px #ffffff,
+            0 0 45px #00ccff,
+            0 0 80px #0044ff;
+    }
+}
+
+@keyframes parpadearSubtituloMenu {
+    0% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.45;
+    }
+}
+
+@keyframes entrarTarjeta {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes flotarCandado {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}

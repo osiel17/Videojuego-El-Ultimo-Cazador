@@ -1,0 +1,791 @@
+/* ===================================================== */
+/* ================= CONFIGURACIÓN BASE ================= */
+/* ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: black;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===================================================== */
+/* ================= PANTALLA INICIO =================== */
+/* ===================================================== */
+
+.pantalla-inicio {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at center, #102030 0%, #05070c 45%, #000000 100%);
+}
+
+/* Fondo oscuro con respiración visual */
+.fondo-oscuro {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(circle at center, rgba(0, 200, 255, 0.12), transparent 35%),
+        linear-gradient(to bottom, #05070c, #000000);
+
+    animation: respirarFondo 5s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ======================= TÍTULO ======================= */
+/* ===================================================== */
+
+.titulo-juego {
+    position: absolute;
+
+    top: clamp(26px, 5vh, 55px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 92vw;
+
+    color: #dffaff;
+
+    font-size: clamp(38px, 5.2vw, 76px);
+    letter-spacing: clamp(4px, 0.8vw, 10px);
+    font-weight: bold;
+
+    text-align: center;
+    white-space: normal;
+
+    z-index: 8;
+
+    text-shadow:
+        0 0 10px #00ccff,
+        0 0 25px #0077ff,
+        0 0 50px #0033aa;
+
+    animation: brilloTitulo 3s infinite alternate;
+}
+
+.subtitulo {
+    position: absolute;
+
+    top: clamp(105px, 16vh, 145px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90vw;
+
+    color: #b8eaff;
+
+    font-size: clamp(17px, 2.4vw, 28px);
+    letter-spacing: clamp(2px, 0.45vw, 4px);
+
+    text-align: center;
+
+    opacity: 0.85;
+
+    z-index: 8;
+
+    text-shadow:
+        0 0 8px #00ccff,
+        0 0 16px #0077ff;
+
+    animation: aparecerSubtitulo 3s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ======================= PORTAL ======================= */
+/* ===================================================== */
+
+.portal {
+    position: absolute;
+
+    width: clamp(210px, 22vw, 300px);
+    height: clamp(300px, 42vh, 420px);
+
+    left: 50%;
+    top: 46%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle, #9df7ff 0%, #00ccff 25%, #0044aa 55%, transparent 75%);
+
+    box-shadow:
+        0 0 30px #00eaff,
+        0 0 80px #00aaff,
+        0 0 140px #0066ff;
+
+    z-index: 4;
+
+    animation:
+        portalPulso 2.5s infinite ease-in-out,
+        brilloPortal 3s infinite alternate;
+}
+
+.portal::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 83%;
+    height: 28%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border: 4px solid rgba(160, 245, 255, 0.85);
+
+    box-shadow:
+        inset 0 0 25px #00ccff,
+        0 0 25px #00ccff,
+        0 0 50px #0077ff;
+
+    animation: girarAroPortal 5s infinite linear;
+}
+
+.portal::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 58%;
+    height: 64%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle, #ffffff 0%, #8df5ff 20%, #0077ff 55%, #001144 100%);
+
+    opacity: 0.75;
+
+    animation: luzPortal 1.7s infinite alternate;
+}
+
+.portal-centro {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 32%;
+    height: 45%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    filter: blur(10px);
+
+    animation: brilloCentro 1.5s infinite alternate;
+}
+
+/* ===================================================== */
+/* ======================= CAZADOR ====================== */
+/* ===================================================== */
+
+.cazador {
+    position: absolute;
+
+    width: clamp(120px, 13vw, 185px);
+    height: clamp(115px, 12.5vw, 175px);
+
+    left: 50%;
+    top: 41%;
+
+    transform: translateX(-50%);
+
+    z-index: 6;
+
+    image-rendering: pixelated;
+
+    filter:
+        drop-shadow(0 0 10px #00ccff)
+        drop-shadow(0 0 25px #0066ff);
+
+    animation: flotarCazador 2s infinite ease-in-out;
+}
+
+/* ===================================================== */
+/* ======================== NIEBLA ====================== */
+/* ===================================================== */
+
+.niebla {
+    position: absolute;
+
+    width: 800px;
+    height: 160px;
+
+    background: rgba(190, 240, 255, 0.12);
+
+    filter: blur(35px);
+
+    border-radius: 50%;
+
+    z-index: 3;
+}
+
+.niebla1 {
+    top: 35%;
+    left: -300px;
+
+    animation: moverNiebla1 11s infinite linear;
+}
+
+.niebla2 {
+    top: 55%;
+    right: -400px;
+
+    animation: moverNiebla2 13s infinite linear;
+}
+
+.niebla3 {
+    bottom: 5%;
+    left: -500px;
+
+    animation: moverNiebla3 16s infinite linear;
+}
+
+/* ===================================================== */
+/* ====================== PARTÍCULAS ==================== */
+/* ===================================================== */
+
+.particula {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: #9df7ff;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px #00ccff,
+        0 0 20px #00ccff;
+
+    z-index: 5;
+
+    animation: subirParticula 5s infinite ease-in-out;
+}
+
+.p1 {
+    left: 42%;
+    top: 70%;
+    animation-delay: 0s;
+}
+
+.p2 {
+    left: 46%;
+    top: 68%;
+    animation-delay: 0.7s;
+}
+
+.p3 {
+    left: 52%;
+    top: 72%;
+    animation-delay: 1.2s;
+}
+
+.p4 {
+    left: 57%;
+    top: 66%;
+    animation-delay: 1.7s;
+}
+
+.p5 {
+    left: 49%;
+    top: 75%;
+    animation-delay: 2.3s;
+}
+
+.p6 {
+    left: 54%;
+    top: 74%;
+    animation-delay: 3s;
+}
+
+/* ===================================================== */
+/* ===================== ZONA CARGA ===================== */
+/* ===================================================== */
+
+.zona-carga {
+    position: absolute;
+
+    left: 50%;
+    bottom: clamp(105px, 15vh, 150px);
+
+    transform: translateX(-50%);
+
+    width: min(78vw, 520px);
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+.texto-cargando {
+    color: #bfefff;
+
+    font-size: clamp(18px, 2.2vw, 25px);
+    letter-spacing: clamp(2px, 0.45vw, 4px);
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 8px #00ccff,
+        0 0 18px #0077ff;
+
+    animation: parpadearCarga 1.4s infinite ease-in-out;
+}
+
+.barra-carga {
+    width: 100%;
+    height: clamp(22px, 3vh, 28px);
+
+    border: 3px solid #b8f7ff;
+    border-radius: 20px;
+
+    background: rgba(0, 20, 40, 0.9);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 18px #00ccff,
+        0 0 35px rgba(0, 204, 255, 0.5),
+        inset 0 0 15px #003344;
+}
+
+.barra-progreso {
+    width: 0%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0044ff,
+            #00ccff,
+            #ffffff,
+            #00ccff,
+            #0044ff
+        );
+
+    background-size: 200% 100%;
+
+    box-shadow:
+        0 0 20px #00ccff,
+        0 0 40px #00ccff;
+
+    animation:
+        cargarBarra 5s forwards ease-in-out,
+        moverBrilloBarra 1.2s infinite linear;
+}
+
+/* ===================================================== */
+/* ======================== BOTÓN ======================= */
+/* ===================================================== */
+
+.boton-jugar {
+    position: absolute;
+
+    left: 50%;
+    bottom: clamp(28px, 5vh, 60px);
+
+    transform: translateX(-50%);
+
+    width: min(78vw, 320px);
+    height: clamp(58px, 8vh, 72px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #eaffff;
+    text-decoration: none;
+
+    font-size: clamp(21px, 2.5vw, 30px);
+    font-weight: bold;
+    letter-spacing: clamp(2px, 0.45vw, 4px);
+
+    border: 3px solid #00ccff;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(to bottom, #003344, #00111a);
+
+    box-shadow:
+        0 0 18px #00ccff,
+        inset 0 0 12px #006688;
+
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 20;
+
+    animation: aparecerBoton 1s forwards ease-in-out;
+    animation-delay: 5s;
+}
+
+.boton-jugar:hover {
+    transform: translateX(-50%) scale(1.08);
+
+    background:
+        linear-gradient(to bottom, #005577, #001a24);
+
+    box-shadow:
+        0 0 25px #00ccff,
+        0 0 45px #0077ff,
+        inset 0 0 18px #00ccff;
+}
+
+/* ===================================================== */
+/* ================= AJUSTES PANTALLA BAJA ============== */
+/* ===================================================== */
+
+@media (max-height: 760px) {
+
+    .titulo-juego {
+        top: 22px;
+        font-size: clamp(32px, 4.5vw, 58px);
+    }
+
+    .subtitulo {
+        top: 92px;
+        font-size: clamp(15px, 2vw, 21px);
+    }
+
+    .portal {
+        width: 210px;
+        height: 300px;
+
+        top: 47%;
+    }
+
+    .cazador {
+        width: 120px;
+        height: 115px;
+
+        top: 42%;
+    }
+
+    .zona-carga {
+        bottom: 95px;
+
+        width: min(72vw, 470px);
+    }
+
+    .texto-cargando {
+        margin-bottom: 12px;
+    }
+
+    .boton-jugar {
+        bottom: 24px;
+
+        height: 54px;
+
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .titulo-juego {
+        font-size: 38px;
+    }
+
+    .subtitulo {
+        font-size: 17px;
+    }
+
+    .portal {
+        width: 200px;
+        height: 290px;
+    }
+
+    .cazador {
+        width: 115px;
+        height: 110px;
+    }
+}
+
+/* ===================================================== */
+/* ===================== KEYFRAMES ====================== */
+/* ===================================================== */
+
+@keyframes respirarFondo {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes brilloTitulo {
+    0% {
+        text-shadow:
+            0 0 10px #00ccff,
+            0 0 25px #0077ff;
+    }
+
+    100% {
+        text-shadow:
+            0 0 20px #ffffff,
+            0 0 45px #00ccff,
+            0 0 80px #0044ff;
+    }
+}
+
+@keyframes aparecerSubtitulo {
+    0% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes portalPulso {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.07);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.85;
+    }
+}
+
+@keyframes brilloPortal {
+    0% {
+        box-shadow:
+            0 0 25px #00ccff,
+            0 0 70px #0066ff,
+            0 0 120px #0033aa;
+    }
+
+    100% {
+        box-shadow:
+            0 0 45px #8df7ff,
+            0 0 110px #00ccff,
+            0 0 180px #0055ff;
+    }
+}
+
+@keyframes girarAroPortal {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes luzPortal {
+    0% {
+        opacity: 0.5;
+        filter: blur(3px);
+    }
+
+    100% {
+        opacity: 0.95;
+        filter: blur(8px);
+    }
+}
+
+@keyframes brilloCentro {
+    0% {
+        opacity: 0.4;
+        height: 38%;
+    }
+
+    100% {
+        opacity: 0.9;
+        height: 52%;
+    }
+}
+
+@keyframes flotarCazador {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes moverNiebla1 {
+    0% {
+        transform: translateX(0);
+        opacity: 0.15;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateX(170vw);
+        opacity: 0.15;
+    }
+}
+
+@keyframes moverNiebla2 {
+    0% {
+        transform: translateX(0);
+        opacity: 0.12;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translateX(-170vw);
+        opacity: 0.12;
+    }
+}
+
+@keyframes moverNiebla3 {
+    0% {
+        transform: translateX(0);
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateX(180vw);
+        opacity: 0.1;
+    }
+}
+
+@keyframes subirParticula {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-260px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes parpadearCarga {
+    0% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.45;
+    }
+}
+
+@keyframes cargarBarra {
+    0% {
+        width: 0%;
+    }
+
+    25% {
+        width: 35%;
+    }
+
+    55% {
+        width: 68%;
+    }
+
+    80% {
+        width: 88%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes moverBrilloBarra {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes aparecerBoton {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+}
